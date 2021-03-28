@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
+import AppBar from './AppBar/AppBar';
 
-const MoviesPage = () => {
-  return <h2>MoviesPage</h2>;
-};
+class MoviesPage extends Component {
+  render() {
+    return (
+      <>
+        <AppBar />
+      </>
+    );
+  }
+}
 
 export default MoviesPage;

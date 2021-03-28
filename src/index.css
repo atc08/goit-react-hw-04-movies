@@ -22,3 +22,12 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.NavLink {
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+.NavLink--active {
+  color: rgb(138, 43, 226);
+}

@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 // import axios from 'axios';
 import Cast from '../views/Cast';
 import { getMovieDetails } from '../services/movieApi';
+import routes from '../routes';
 
 class MovieDetailsPage extends Component {
   state = {
@@ -36,6 +37,11 @@ class MovieDetailsPage extends Component {
     });
   }
 
+  handleGoBack = () => {
+    const { history, location } = this.props;
+    history.push(location?.state?.from || routes.home);
+  };
+
   render() {
     const {
       // movieDetails,
@@ -52,8 +58,11 @@ class MovieDetailsPage extends Component {
     return (
       <>
         {original_title !== null && (
-          <>
-            (<img src={imgUrl + backdrop_path} alt={original_title} />
+          <div>
+            <button type="button" onClick={this.handleGoBack}>
+              Go Back
+            </button>
+            <img src={imgUrl + backdrop_path} alt={original_title} />
             <h2>
               {original_title} ({release_date})
             </h2>
@@ -83,8 +92,8 @@ class MovieDetailsPage extends Component {
                 const movieId = Number(this.props.match.params.movieId);
                 return movieId ? <Cast {...props} /> : null;
               }} */}
-            {/* </Route> */})
-          </>
+            {/* </Route> */}
+          </div>
         )}
       </>
     );

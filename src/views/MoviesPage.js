@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppBar from './AppBar/AppBar';
+import AppBar from '../components/AppBar/AppBar';
 
 class MoviesPage extends Component {
   render() {

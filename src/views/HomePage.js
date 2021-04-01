@@ -1,7 +1,8 @@
 // import axios from 'axios';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { getTrending } from '../services/movieApi';
+import MovieList from '../components/MovieList';
 
 class HomePage extends Component {
   state = {
@@ -22,26 +23,7 @@ class HomePage extends Component {
     console.log(this.props.match.url);
     const { movies, imgUrl } = this.state;
     return (
-      <>
-        {movies.length > 0 && (
-          <ul>
-            {movies.map(movie => (
-              <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`}>
-                  <img
-                    src={imgUrl + movie.backdrop_path}
-                    alt={movie.original_title}
-                  />
-                  <p>
-                    {movie.original_title} {movie.release_date}
-                    {movie.original_name} {movie.first_air_date}
-                  </p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </>
+      <>{movies.length > 0 && <MovieList movies={movies} imgUrl={imgUrl} />}</>
     );
   }
 }

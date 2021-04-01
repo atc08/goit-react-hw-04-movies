@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 // import axios from 'axios';
 import Cast from '../views/Cast';
+import Reviews from '../views/Reviews';
 import { getMovieDetails } from '../services/movieApi';
 import routes from '../routes';
 
@@ -80,19 +81,20 @@ class MovieDetailsPage extends Component {
               <Link to={`${this.props.match.url}/cast>${this.props.match.url}`}>
                 Cast
               </Link>
-              <Link to={`${this.props.match.url}/reviews`}>Review</Link>
+              <Link
+                to={`${this.props.match.url}/reviews>${this.props.match.url}`}
+              >
+                Review
+              </Link>
             </div>
             <Route
               path={`${this.props.match.path}/cast>${this.props.match.path}`}
               component={Cast}
             />
-            {/* path={`${this.props.match.path}/cast`}
-              render=
-              {props => {
-                const movieId = Number(this.props.match.params.movieId);
-                return movieId ? <Cast {...props} /> : null;
-              }} */}
-            {/* </Route> */}
+            <Route
+              path={`${this.props.match.path}/reviews>${this.props.match.path}`}
+              component={Reviews}
+            />
           </div>
         )}
       </>

@@ -24,7 +24,8 @@ const getTrending = async ({ currentPage = 1 }) => {
 const getSearchMovies = async ({ query, page = 1 }) => {
   try {
     const { data } = await axios.get(
-      `search/movie?query=${query}&page=${page}&include_adult=false`,
+      // `search/movie?query=${query}&page=${page}&include_adult=false`,
+      `search/movie?query=batman&page=${page}&include_adult=false`,
     );
     return data;
   } catch (error) {
@@ -55,7 +56,7 @@ const getMovieCast = async ({ id }) => {
 
 const getMovieReview = async ({ id }) => {
   try {
-    const { data } = await axios.get(`movie/${id}/reviews?page=1`);
+    const data = await axios.get(`movie/${id}/reviews?page=1`);
     return data;
   } catch (error) {
     console.log('error', { error });

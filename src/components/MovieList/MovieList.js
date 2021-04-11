@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import routes from '../../routes';
 
 const MovieList = ({ movies, imgUrl, location }) => {
   return (
@@ -8,7 +9,7 @@ const MovieList = ({ movies, imgUrl, location }) => {
         <li key={movie.id}>
           <Link
             to={{
-              pathname: `/movies/${movie.id}`,
+              pathname: `${routes.movies}/${movie.id}`,
               state: {
                 from: location,
               },

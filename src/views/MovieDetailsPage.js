@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
-// import axios from 'axios';
+import { Route, Link, Switch } from 'react-router-dom';
 import Cast from '../views/Cast';
 import Reviews from '../views/Reviews';
 import { getMovieDetails } from '../services/movieApi';
@@ -15,20 +14,8 @@ class MovieDetailsPage extends Component {
     overview: null,
     id: null,
     genres: null,
-    // movieDetails: [],
     imgUrl: 'https://image.tmdb.org/t/p/w780/',
   };
-
-  // async componentDidMount() {
-  //   const { movieId } = this.props.match.params;
-  //   const response = await axios.get(
-  //     `https://api.themoviedb.org/3/movie/${movieId}?api_key=2e7ddd707cda482bd62363d7d16dcf77&language=en-US`,
-  //   );
-
-  //   this.setState({ ...response.data });
-  //   console.log(movieId);
-  //   console.log(response.data);
-  // }
 
   componentDidMount() {
     const id = Number(this.props.match.params.movieId);
@@ -45,7 +32,6 @@ class MovieDetailsPage extends Component {
 
   render() {
     const {
-      // movieDetails,
       backdrop_path,
       original_title,
       release_date,
@@ -54,8 +40,9 @@ class MovieDetailsPage extends Component {
       genres,
       imgUrl,
     } = this.state;
-    // const { movieId } = this.props.match.params;
-    // console.log(this.props.match.params);
+
+    const { url, path } = this.props.match;
+
     return (
       <>
         {original_title !== null && (
@@ -78,23 +65,13 @@ class MovieDetailsPage extends Component {
             </ul>
             <p>Additional information</p>
             <div>
-              <Link to={`${this.props.match.url}/cast>${this.props.match.url}`}>
-                Cast
-              </Link>
-              <Link
-                to={`${this.props.match.url}/reviews>${this.props.match.url}`}
-              >
-                Review
-              </Link>
+              <Link to={`${url}/cast>${url}`}>Cast</Link>
+              <Link to={`${url}/reviews>${url}`}>Review</Link>
             </div>
-            <Route
-              path={`${this.props.match.path}/cast>${this.props.match.path}`}
-              component={Cast}
-            />
-            <Route
-              path={`${this.props.match.path}/reviews>${this.props.match.path}`}
-              component={Reviews}
-            />
+            <Switch>
+              <Route path={`${path}/cast>${path}`} component={Cast} />
+              <Route path={`${path}/reviews>${path}`} component={Reviews} />
+            </Switch>
           </div>
         )}
       </>

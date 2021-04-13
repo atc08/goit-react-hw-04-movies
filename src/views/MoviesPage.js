@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import SearchBar from '../components/SearchBar';
 import MovieList from '../components/MovieList';
 import { getSearchMovies } from '../services/movieApi';
@@ -6,59 +7,63 @@ import { getSearchMovies } from '../services/movieApi';
 class MoviesPage extends Component {
   state = {
     movies: [],
-    // query: '',
     imgUrl: 'https://image.tmdb.org/t/p/w780/',
+    searchQuery: '',
   };
 
-  // componentDidMount() {
-  //   const { movies, currentPage } = this.state;
-  //   const options = { movies, currentPage };
-  //   getSearchMovies(options).then(({ results, page }) => {
-  //     this.setState({ movies: results, currentPage: page });
-  //     console.log(results);
-  //   });
-  // }
-
   componentDidMount() {
-    const { query } = this.props.location.search;
-    console.log(query);
+    // const { query } = this.props.location.search;
+    // console.log(query);
+    // if (query) {
+    //   this.fetchMovies();
+    //   console.log(query);
+    // }
 
-    if (query) {
-      this.fetchMovies();
-      console.log(query);
+    const { search, pathname } = this.props.location;
+
+    if (search && pathname) {
+      this.setState({
+        searchQuery: queryString.parse(search).query,
+      });
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { query: prevQuery } = prevProps.location.search;
-    const { query: nextQuery } = this.props.location.search;
-    console.log(prevQuery);
-    console.log(nextQuery);
-    if (prevQuery !== nextQuery) {
-      this.fetchMovies(nextQuery);
-      console.log(prevQuery);
-      console.log(nextQuery);
+  componentDidUpdate(prevState) {
+    // const { query: prevQuery } = prevProps.location.search;
+    // const { query: nextQuery } = this.props.location.search;
+    // console.log(prevQuery);
+    // console.log(nextQuery);
+    // if (prevQuery !== nextQuery) {
+    //   this.fetchMovies(nextQuery);
+    //   console.log(prevQuery);
+    //   console.log(nextQuery);
+    // }
+    const { searchQuery } = this.state;
+    if (prevState.searchQuery !== searchQuery) {
+      this.fetchMovies(searchQuery);
     }
   }
 
-  fetchMovies = query => {
-    // const { movies } = this.state;
-    // const options = { movies };
-    getSearchMovies(query).then(({ results }) => {
+  fetchMovies() {
+    // const { movies, searchQuery } = this.state;
+    const { movies, searchQuery } = this.state;
+    const options = { movies, searchQuery };
+    if (!searchQuery) {
+      return;
+    }
+    getSearchMovies(options).then(({ results }) => {
       // this.setState(prevState => ({
-      //   movies: [...prevState.movies, results],
-      //   currentPage: page,
-      //   total: total,
+      //   movies: results,
       // }));
       this.setState({
-        movies: results,
+        movies: [...results],
       });
       // console.log(results);
     });
-  };
+  }
 
   onChangeQuery = query => {
-    // this.setState({ query: query, movies: [] });
+    this.setState({ searchQuery: query });
     this.props.history.push({
       ...this.props.location,
       search: `query=${query}`,

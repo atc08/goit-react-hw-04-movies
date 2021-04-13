@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import { getMovieCast } from '../services/movieApi';
 
 class Cast extends Component {
@@ -7,17 +6,6 @@ class Cast extends Component {
     cast: [],
     imgUrl: 'https://image.tmdb.org/t/p/w200/',
   };
-
-  // async componentDidMount() {
-  //   const { movieId } = this.props.match.params;
-  //   const response = await axios.get(
-  //     `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=2e7ddd707cda482bd62363d7d16dcf77&language=en-US`,
-  //   );
-
-  //   this.setState({ cast: response.data.cast });
-  //   // console.log(movieId);
-  //   console.log(response.data.cast);
-  // }
 
   componentDidMount() {
     const id = Number(this.props.match.params.movieId);
@@ -28,17 +16,21 @@ class Cast extends Component {
 
   render() {
     const { cast, imgUrl } = this.state;
-    console.log({ cast });
     return (
       <>
-        <h2>cast</h2>
         {cast.length > 0 && (
-          <ul>
+          <ul className="CastList">
             {cast.map(({ original_name, character, profile_path, id }) => (
-              <li key={id}>
-                <p>Original name: {original_name}</p>
-                <p>Character: {character}</p>
-                <img src={imgUrl + profile_path} alt={original_name} />
+              <li key={id} className="CastListItem">
+                <img
+                  src={imgUrl + profile_path}
+                  alt={original_name}
+                  className="CastListItemImg"
+                />
+                <p className="CastListItemInfo">
+                  Original name: {original_name}
+                </p>
+                <p className="CastListItemInfo">Character: {character}</p>
               </li>
             ))}
           </ul>

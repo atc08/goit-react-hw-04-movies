@@ -21,12 +21,13 @@ const getTrending = async ({ currentPage = 1 }) => {
   }
 };
 
-const getSearchMovies = async ({ query }) => {
+const getSearchMovies = async ({ searchQuery = '' }) => {
   try {
-    const data = await axios.get(
-      `search/movie?query=${query}&include_adult=false`,
-      // `search/movie?query=batman&page=${page}&include_adult=false`,
+    const { data } = await axios.get(
+      `search/movie?query=${searchQuery}&include_adult=false`,
     );
+    // const { results } = data;
+    // return { results };
     return data;
   } catch (error) {
     console.log('error', { error });

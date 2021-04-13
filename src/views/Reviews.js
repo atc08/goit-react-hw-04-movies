@@ -9,7 +9,6 @@ class Reviews extends Component {
   componentDidMount() {
     const id = Number(this.props.match.params.movieId);
     getMovieReview({ id }).then(({ data }) => {
-      console.log(data.results);
       this.setState({ reviews: data.results });
     });
   }

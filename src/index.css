@@ -26,8 +26,99 @@ img {
 .NavLink {
   font-size: 20px;
   color: rgb(0, 0, 0);
+  text-decoration: none;
 }
 
 .NavLink--active {
-  color: rgb(138, 43, 226);
+  color: rgb(255, 69, 0);
+}
+
+.MovieDetailsWrapper {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.MovieDetailsImg {
+  width: 274px;
+  height: 400px;
+  margin-bottom: 20px;
+}
+
+.DetailsNavLinksWrapper {
+  width: 140px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.AddInfoWrapper {
+  padding: 0 20px;
+}
+
+.CastList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.CastListItem {
+  width: 180px;
+  margin: 0 auto;
+  height: 200px;
+  text-align: center;
+  margin-bottom: 10px;
+  border: 2px solid rgb(72, 193, 187);
+  border-radius: 8px;
+  padding: 6px 0;
+}
+
+.CastListItemImg {
+  width: 100px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 8px;
+  background-color: rgb(173, 216, 230);
+  margin-bottom: 6px;
+}
+
+.CastListItemInfo {
+  margin: 0 0 8px;
+  font-size: 10px;
+}
+
+@media (min-width: 768px) {
+  .MovieDetailsWrapper {
+    flex-direction: row;
+  }
+
+  .MovieDetailsImg {
+    width: 358px;
+    height: 528px;
+    margin-right: 20px;
+  }
+
+  .CastList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .CastListItem {
+    width: 200px;
+    height: 230px;
+    font-size: 14px;
+  }
+
+  .CastListItemInfo {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .MovieDetailsImg {
+    width: 428px;
+    height: 632px;
+  }
 }

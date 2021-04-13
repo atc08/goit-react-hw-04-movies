@@ -1,10 +1,5 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import HomePage from './views/HomePage';
-// import MoviesPage from './views/MoviesPage';
-// import MovieDetailsPage from './views/MovieDetailsPage';
-// import Cast from './views/Cast';
-// import Reviews from './views/Reviews';
 import routes from './routes';
 import AppBar from './components/AppBar';
 

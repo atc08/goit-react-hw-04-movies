@@ -1,0 +1,21 @@
+.navigation {
+  display: flex;
+  height: 50px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: rgb(72, 193, 187);
+}
+
+.navigationLinksWrapper {
+  width: 140px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navigation__title {
+  font-size: 26px;
+  font-weight: 700;
+  color: navy;
+}

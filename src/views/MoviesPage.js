@@ -12,13 +12,6 @@ class MoviesPage extends Component {
   };
 
   componentDidMount() {
-    // const { query } = this.props.location.search;
-    // console.log(query);
-    // if (query) {
-    //   this.fetchMovies();
-    //   console.log(query);
-    // }
-
     const { search, pathname } = this.props.location;
 
     if (search && pathname) {
@@ -29,15 +22,6 @@ class MoviesPage extends Component {
   }
 
   componentDidUpdate(prevState) {
-    // const { query: prevQuery } = prevProps.location.search;
-    // const { query: nextQuery } = this.props.location.search;
-    // console.log(prevQuery);
-    // console.log(nextQuery);
-    // if (prevQuery !== nextQuery) {
-    //   this.fetchMovies(nextQuery);
-    //   console.log(prevQuery);
-    //   console.log(nextQuery);
-    // }
     const { searchQuery } = this.state;
     if (prevState.searchQuery !== searchQuery) {
       this.fetchMovies(searchQuery);
@@ -54,6 +38,7 @@ class MoviesPage extends Component {
       this.setState({
         movies: [...results],
       });
+      return;
     });
   }
 

@@ -18,9 +18,8 @@ class SearchBar extends Component {
       this.setState({ query: '' });
       return;
     }
-    console.log(query);
     this.props.onChange(query);
-    // this.setState({ query: '' });
+    this.setState({ query: '' });
   };
 
   render() {

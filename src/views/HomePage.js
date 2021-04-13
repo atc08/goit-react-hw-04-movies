@@ -5,15 +5,13 @@ import MovieList from '../components/MovieList';
 class HomePage extends Component {
   state = {
     movies: [],
-    currentPage: 1,
     imgUrl: 'https://image.tmdb.org/t/p/w780/',
   };
 
   componentDidMount() {
-    const { movies, currentPage } = this.state;
-    const options = { movies, currentPage };
-    getTrending(options).then(({ results, page }) => {
-      this.setState({ movies: results, currentPage: page });
+    const { movies } = this.state;
+    getTrending(movies).then(({ results }) => {
+      this.setState({ movies: results });
     });
   }
   render() {

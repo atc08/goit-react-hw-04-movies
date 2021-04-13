@@ -26,8 +26,6 @@ const getSearchMovies = async ({ searchQuery = '' }) => {
     const { data } = await axios.get(
       `search/movie?query=${searchQuery}&include_adult=false`,
     );
-    // const { results } = data;
-    // return { results };
     return data;
   } catch (error) {
     console.log('error', { error });

@@ -45,20 +45,15 @@ class MoviesPage extends Component {
   }
 
   fetchMovies() {
-    // const { movies, searchQuery } = this.state;
     const { movies, searchQuery } = this.state;
     const options = { movies, searchQuery };
     if (!searchQuery) {
       return;
     }
     getSearchMovies(options).then(({ results }) => {
-      // this.setState(prevState => ({
-      //   movies: results,
-      // }));
       this.setState({
         movies: [...results],
       });
-      // console.log(results);
     });
   }
 
@@ -76,7 +71,6 @@ class MoviesPage extends Component {
       <>
         <SearchBar onChange={this.onChangeQuery} />
         {movies.length > 0 && <MovieList movies={movies} imgUrl={imgUrl} />}
-        {/* <MovieList movies={movies} imgUrl={imgUrl} /> */}
       </>
     );
   }

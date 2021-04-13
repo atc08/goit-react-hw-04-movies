@@ -74,11 +74,7 @@ class MovieDetailsPage extends Component {
               <h3>Additional information</h3>
               <div className="DetailsNavLinksWrapper">
                 <NavLink
-                  // to={`${url}/cast>${url}`}
-                  to={{
-                    pathname: `${url}/cast`,
-                    state: { ...this.props.location.state },
-                  }}
+                  to={`${url}/cast>${url}`}
                   className="NavLink"
                   activeClassName="NavLink--active"
                 >
@@ -94,7 +90,7 @@ class MovieDetailsPage extends Component {
               </div>
             </div>
             <Switch>
-              <Route path={`${path}/cast`} component={Cast} />
+              <Route path={`${path}/cast>${path}`} component={Cast} />
               <Route path={`${path}/reviews>${path}`} component={Reviews} />
             </Switch>
           </div>

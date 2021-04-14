@@ -14,12 +14,6 @@ const MovieDetailsPage = lazy(() =>
     './views/MovieDetailsPage' /* webpackChunkName: "movie-details-page" */
   ),
 );
-const Cast = lazy(() =>
-  import('./views/Cast' /* webpackChunkName: "cast-page" */),
-);
-const Reviews = lazy(() =>
-  import('./views/Reviews' /* webpackChunkName: "reviews-page" */),
-);
 
 class App extends Component {
   render() {
@@ -30,8 +24,6 @@ class App extends Component {
         <Suspense fallback={<h2>Loading...</h2>}>
           <Switch>
             <Route exact path={routes.home} component={HomePage} />
-            <Route path={routes.movieDetailsCast} component={Cast} />
-            <Route path={routes.movieDetailsReviews} component={Reviews} />
             <Route path={routes.movieDetails} component={MovieDetailsPage} />
             <Route exact path={routes.movies} component={MoviesPage} />
             <Route component={HomePage} />

@@ -1,9 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { Route, NavLink, Switch } from 'react-router-dom';
-import Cast from '../views/Cast';
-import Reviews from '../views/Reviews';
+// import Cast from '../views/Cast';
+// import Reviews from '../views/Reviews';
 import { getMovieDetails } from '../services/movieApi';
 import routes from '../routes';
+
+const Cast = lazy(() =>
+  import('../views/Cast' /* webpackChunkName: "cast-page" */),
+);
+const Reviews = lazy(() =>
+  import('../views/Reviews' /* webpackChunkName: "reviews-page" */),
+);
 
 class MovieDetailsPage extends Component {
   state = {
@@ -41,6 +48,7 @@ class MovieDetailsPage extends Component {
     } = this.state;
 
     const { url, path } = this.props.match;
+    const { state } = this.props.location;
 
     return (
       <>
@@ -74,25 +82,33 @@ class MovieDetailsPage extends Component {
               <h3>Additional information</h3>
               <div className="DetailsNavLinksWrapper">
                 <NavLink
-                  to={`${url}/cast>${url}`}
-                  className="NavLink"
-                  activeClassName="NavLink--active"
+                  to={{
+                    pathname: `${url}/cast`,
+                    state: { ...state },
+                  }}
+                  className="nav-link"
+                  activeClassName="active"
                 >
                   Cast
                 </NavLink>
                 <NavLink
-                  to={`${url}/reviews>${url}`}
-                  className="NavLink"
-                  activeClassName="NavLink--active"
+                  to={{
+                    pathname: `${url}/reviews`,
+                    state: { ...state },
+                  }}
+                  className="nav-link"
+                  activeClassName="active"
                 >
-                  Review
+                  Reviews
                 </NavLink>
               </div>
             </div>
-            <Switch>
-              <Route path={`${path}/cast>${path}`} component={Cast} />
-              <Route path={`${path}/reviews>${path}`} component={Reviews} />
-            </Switch>
+            <Suspense fallback={<h2>Loading...</h2>}>
+              <Switch>
+                <Route path={`${path}/cast`} component={Cast} />
+                <Route path={`${path}/reviews`} component={Reviews} />
+              </Switch>
+            </Suspense>
           </div>
         )}
       </>
